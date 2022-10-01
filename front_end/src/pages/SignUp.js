@@ -10,11 +10,11 @@ import {
   Flex,
   FormLabel,
   FormControl,
-  useColorModeValue,
   Checkbox,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import { ColorModeSwitcher } from '../elements/ColorModeSwitcher';
 import { useNavigate } from 'react-router-dom';
+import { setUser } from '../utils/actions';
 
 const Entry = ({ type }) => {
   // const [isLaptopSize] = useMediaQuery(['(min-width: 1023px)']);
@@ -22,12 +22,12 @@ const Entry = ({ type }) => {
 
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
-  var validRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  var validRegex = /^(?=^[^_]+_?[^_]+$)\w{3,20}$/;
 
   const validateForm = () => {
     return form.password.length >= 6 && form.email.match(validRegex);
   };
+
   const handleChange = e => {
     e.preventDefault();
     const { value, name } = e.target;
@@ -57,10 +57,10 @@ const Entry = ({ type }) => {
               {type === 'Login' ? '🚪' : '📬'} {type}
             </Heading>
             <FormControl>
-              <FormLabel pl="1">Email:</FormLabel>
+              <FormLabel pl="1">Username:</FormLabel>
               <Input
                 value={form.email}
-                type={'email'}
+                type={'text'}
                 rounded={'none'}
                 maxW="300px"
                 placeholder="test@gmail.com"
@@ -91,9 +91,7 @@ const Entry = ({ type }) => {
                   opacity: 0.375,
                 }}
               >
-                <Text fontSize={['12px', '12px', '16px']}>
-                  Valid Email Format
-                </Text>
+                <Text fontSize={['12px', '12px', '16px']}>Valid Username</Text>
               </Checkbox>
               <Checkbox
                 isChecked={form.password.length >= 6 ? true : false}
@@ -125,7 +123,10 @@ const Entry = ({ type }) => {
               disabled={!validateForm()}
               w="60%"
               alignSelf={'center'}
-              onClick={() => navigate('/dashboard')}
+              onClick={() => {
+                setUser(form.email);
+                navigate('/dashboard');
+              }}
             >
               {type === 'Login' ? 'Login' : 'Sign up'}
             </Button>
