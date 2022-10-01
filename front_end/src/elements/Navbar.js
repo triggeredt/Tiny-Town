@@ -73,6 +73,12 @@ const Navbar = () => {
                 Help
               </Button>
               <Button
+                variant="ghost"
+                onClick={() => navigate('/dashboard/map')}
+              >
+                Map
+              </Button>
+              <Button
                 onClick={() => {
                   removeUser();
                   removeToken();
@@ -146,6 +152,13 @@ const Navbar = () => {
                   onClick={() => navigate('/dashboard/help')}
                 >
                   Help
+                </Button>
+                <Button
+                  w="full"
+                  variant="ghost"
+                  onClick={() => navigate('/dashboard/map')}
+                >
+                  Map
                 </Button>
                 <Button
                   w="full"

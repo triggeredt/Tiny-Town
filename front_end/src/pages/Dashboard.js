@@ -11,11 +11,15 @@ import {
   Stack,
   Input,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from '../elements/ColorModeSwitcher';
 import { useNavigate } from 'react-router-dom';
 import { getUser } from '../utils/actions';
 import Navbar from '../elements/Navbar';
-function Dashboard({ ans1, ans2, ans3, ans4 }) {
+function Dashboard() {
+  const ans1 = JSON.parse(localStorage.getItem('answ1'));
+  const ans2 = JSON.parse(localStorage.getItem('answ2'));
+  const ans3 = JSON.parse(localStorage.getItem('answ3'));
+  const ans4 = JSON.parse(localStorage.getItem('answ4'));
+
   const [isPhone] = useMediaQuery('(max-width: 50em)');
   let navigate = useNavigate();
   const user = getUser();
@@ -83,25 +87,25 @@ function Dashboard({ ans1, ans2, ans3, ans4 }) {
                         isReadOnly
                         variant={'flushed'}
                         w="2ch"
-                        value={ans1}
+                        value={ans1 ? ans1 : ''}
                       />
                       <Input
                         isReadOnly
                         variant={'flushed'}
                         w="2ch"
-                        value={ans2}
+                        value={ans2 ? ans2 : ''}
                       />{' '}
                       <Input
                         isReadOnly
                         variant={'flushed'}
                         w="2ch"
-                        value={ans3}
+                        value={ans3 ? ans3 : ''}
                       />{' '}
                       <Input
                         isReadOnly
                         variant={'flushed'}
                         w="2ch"
-                        value={ans4}
+                        value={ans4 ? ans4 : ''}
                       />
                     </HStack>
                   </>
@@ -147,25 +151,25 @@ function Dashboard({ ans1, ans2, ans3, ans4 }) {
                         isReadOnly
                         variant={'flushed'}
                         w="2ch"
-                        value={ans1}
+                        value={ans1 ? ans1 : ''}
                       />
                       <Input
                         isReadOnly
                         variant={'flushed'}
                         w="2ch"
-                        value={ans2}
+                        value={ans2 ? ans2 : ''}
                       />{' '}
                       <Input
                         isReadOnly
                         variant={'flushed'}
                         w="2ch"
-                        value={ans3}
+                        value={ans3 ? ans3 : ''}
                       />{' '}
                       <Input
                         isReadOnly
                         variant={'flushed'}
                         w="2ch"
-                        value={ans4}
+                        value={ans4 ? ans4 : ''}
                       />
                     </HStack>
                   </>
