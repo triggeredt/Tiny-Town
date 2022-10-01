@@ -7,7 +7,7 @@ class Code(Model):
         DIGIT = 2
     Order = PositiveIntegerField(null=True,blank=True)
     AnswerDigit = PositiveIntegerField(null=True)
-    AnswerLocation = CharField(max_length=100)
+    AnswerLocation = CharField(max_length=100, blank=True)
     Location = CharField(max_length=100, blank=True)
     Hint = CharField(max_length=250)
     HintType = SmallIntegerField(choices=HintTypeChoices.choices,default=1)
