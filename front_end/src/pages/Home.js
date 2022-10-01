@@ -10,11 +10,14 @@ import {
   Button,
   Stack,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import { ColorModeSwitcher } from '../elements/ColorModeSwitcher';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../utils/actions';
 function Home() {
   const [isPhone] = useMediaQuery('(max-width: 50em)');
   let navigate = useNavigate();
+  const user = getUser();
+  if (user) navigate('/dashboard');
 
   return (
     <Box>
@@ -34,7 +37,7 @@ function Home() {
               </Box>
 
               <Button size={'lg'} onClick={() => navigate('signup')}>
-                Sign up
+                Join
               </Button>
             </Stack>
           </Stack>
