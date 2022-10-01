@@ -23,7 +23,7 @@ function Scan() {
   const user = getUser();
   if (!user) navigate('/login');
   useEffect(() => {
-    if (data.startsWith('http')) {
+    if (data !== 'No result') {
       window.location.href = data;
       return false;
     }
