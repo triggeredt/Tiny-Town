@@ -18,7 +18,7 @@ import {
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { removeUser } from '../utils/actions';
+import { removeToken, removeUser } from '../utils/actions';
 const Navbar = () => {
   const navigate = useNavigate();
   const bg = useColorModeValue('white', 'gray.800');
@@ -75,6 +75,8 @@ const Navbar = () => {
               <Button
                 onClick={() => {
                   removeUser();
+                  removeToken();
+
                   navigate('/');
                 }}
               >
@@ -150,6 +152,7 @@ const Navbar = () => {
                   variant="ghost"
                   onClick={() => {
                     removeUser();
+                    removeToken();
                     navigate('/');
                   }}
                 >
