@@ -1,7 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from .views import *
+from rest_framework.routers import DefaultRouter
 app_name = 'treasurehunt'
+router = DefaultRouter()
+router.register(r'code', CodeViewSet)
+router.register(r'codefind', CodeFindViewSet)
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
-    path('<int:code_id>', CodeView.as_view(), name='code'),
+    path('', include(router.urls)),
+    path('', include('knox.urls')),
 ]

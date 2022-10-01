@@ -1,30 +1,36 @@
 from .models import *
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
-from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework import permissions
+from rest_framework import viewsets
+from rest_framework.authentication import SessionAuthentication
+from knox.auth import TokenAuthentication
+from .serializers import *
 
-class HomeView(LoginRequiredMixin, View):
-    def get(self, request):
-        return render(request, 'treasurehunt/home_placeholder.html')
+player_permissions = (
+    'treasurehunt.view_code',
+    'treasurehunt.change_codefind',
+    'treasurehunt.view_codefind',
+)
 
-class CodeView(LoginRequiredMixin, View):
-    def get(self, request, code_id):
-        code = get_object_or_404(Code, pk=code_id)
-        try:
-            user_answer = CodeFind.objects.get(User=request.user, Code=code).Answer
-        except CodeFind.DoesNotExist:
-            user_answer = ''
-        return render(request, 'treasurehunt/code_placeholder.html', {'code':code, 'user_answer':user_answer})
-    def post(self, request, code_id):
-        if request.POST['answer'].isnumeric():
-            codefind, created = CodeFind.objects.update_or_create(User=request.user, Code_id=code_id, defaults={'Answer':int(request.POST['answer'])})
-            return HttpResponse("Submitted" if created else "Updated")
-        else:
-            return HttpResponseBadRequest()
+class IsOwner(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return obj.User == request.user
 
-class CheckInView(LoginRequiredMixin, View):
-    def get(self, request):
-        return render(request, 'treasurehunt/checkin_placeholder.html')
-    def post(self, request):
-        return HttpResponseRedirect()
+class HasPermissions(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perms(player_permissions)
+
+class CodeViewSet(viewsets.ModelViewSet):
+    authentication_classes = (SessionAuthentication, TokenAuthentication)
+    permission_classes = [permissions.IsAuthenticated,HasPermissions]
+    queryset = Code.objects.all()
+    serializer_class = CodeSerializer
+
+class CodeFindViewSet(viewsets.ModelViewSet):
+    authentication_classes = (SessionAuthentication, TokenAuthentication)
+    permission_classes = [permissions.IsAuthenticated,IsOwner,HasPermissions]
+    queryset = CodeFind.objects.all()
+    serializer_class = CodeFindSerializer
+    def get_queryset(self):
+        return self.queryset.filter(User=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(User=self.request.user)
