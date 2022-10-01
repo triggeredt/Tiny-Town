@@ -1,3 +1,6 @@
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 from .models import *
 from rest_framework import permissions
 from rest_framework import viewsets
@@ -23,17 +26,15 @@ class HasPermissions(permissions.BasePermission):
 
 class TopViewSet(viewsets.ModelViewSet):
     authentication_classes = (SessionAuthentication, TokenAuthentication)
-    @action(detail=False, methods=['post'])
-    def ischeckedin(self, request):
-        return Response({'checkedin':request.user.has_perms(player_permissions)})
-    def checkin(self, request):
-        request.user.user_permissions.add(*player_permissions)
-        return Response({'checkedin':True})
 
 class CodeViewSet(TopViewSet):
     permission_classes = [permissions.IsAuthenticated,HasPermissions]
     queryset = Code.objects.all()
     serializer_class = CodeSerializer
+    @action(detail=True, methods=['get'])
+    def find(self, request, pk):
+        codefind = get_object_or_404(CodeFind, User=request.user, Code_id=pk)
+        return HttpResponseRedirect('/treasurehunt/codefind/' + str(codefind.id))
 
 class CodeFindViewSet(TopViewSet):
     permission_classes = [permissions.IsAuthenticated,IsOwner,HasPermissions]
