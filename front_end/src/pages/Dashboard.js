@@ -15,7 +15,7 @@ import { ColorModeSwitcher } from '../elements/ColorModeSwitcher';
 import { useNavigate } from 'react-router-dom';
 import { getUser } from '../utils/actions';
 import Navbar from '../elements/Navbar';
-function Dashboard() {
+function Dashboard({ ans1, ans2, ans3, ans4 }) {
   const [isPhone] = useMediaQuery('(max-width: 50em)');
   let navigate = useNavigate();
   const user = getUser();
@@ -79,14 +79,30 @@ function Dashboard() {
                   <>
                     <Text>Code:</Text>
                     <HStack justify={'center'} p="8">
-                      <Input isReadOnly variant={'flushed'} w="2ch" />
-                      <Input isReadOnly variant={'flushed'} w="2ch" />
-                      <Input isReadOnly variant={'flushed'} w="2ch" />
-                      <Input isReadOnly variant={'flushed'} w="2ch" />
-                      <Input isReadOnly variant={'flushed'} w="2ch" />
-                      <Input isReadOnly variant={'flushed'} w="2ch" />
-                      <Input isReadOnly variant={'flushed'} w="2ch" />
-                      <Input isReadOnly variant={'flushed'} w="2ch" />
+                      <Input
+                        isReadOnly
+                        variant={'flushed'}
+                        w="2ch"
+                        value={ans1}
+                      />
+                      <Input
+                        isReadOnly
+                        variant={'flushed'}
+                        w="2ch"
+                        value={ans2}
+                      />{' '}
+                      <Input
+                        isReadOnly
+                        variant={'flushed'}
+                        w="2ch"
+                        value={ans3}
+                      />{' '}
+                      <Input
+                        isReadOnly
+                        variant={'flushed'}
+                        w="2ch"
+                        value={ans4}
+                      />
                     </HStack>
                   </>
                 )}
@@ -127,14 +143,30 @@ function Dashboard() {
                   <>
                     <Text>Code:</Text>
                     <HStack justify={'center'} p="8">
-                      <Input isReadOnly variant={'flushed'} w="5ch" />
-                      <Input isReadOnly variant={'flushed'} w="5ch" />
-                      <Input isReadOnly variant={'flushed'} w="5ch" />
-                      <Input isReadOnly variant={'flushed'} w="5ch" />
-                      <Input isReadOnly variant={'flushed'} w="5ch" />
-                      <Input isReadOnly variant={'flushed'} w="5ch" />
-                      <Input isReadOnly variant={'flushed'} w="5ch" />
-                      <Input isReadOnly variant={'flushed'} w="5ch" />
+                      <Input
+                        isReadOnly
+                        variant={'flushed'}
+                        w="2ch"
+                        value={ans1}
+                      />
+                      <Input
+                        isReadOnly
+                        variant={'flushed'}
+                        w="2ch"
+                        value={ans2}
+                      />{' '}
+                      <Input
+                        isReadOnly
+                        variant={'flushed'}
+                        w="2ch"
+                        value={ans3}
+                      />{' '}
+                      <Input
+                        isReadOnly
+                        variant={'flushed'}
+                        w="2ch"
+                        value={ans4}
+                      />
                     </HStack>
                   </>
                 )}

@@ -14,11 +14,11 @@ import {
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../elements/ColorModeSwitcher';
 import { useNavigate } from 'react-router-dom';
-import { setUser } from '../utils/actions';
+import { setUser, loginAction, setToken } from '../utils/actions';
 
 const Entry = ({ type }) => {
   // const [isLaptopSize] = useMediaQuery(['(min-width: 1023px)']);
-  const [message, setmessage] = useState('Error');
+  const [message, setmessage] = useState('');
 
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
@@ -123,10 +123,21 @@ const Entry = ({ type }) => {
               disabled={!validateForm()}
               w="60%"
               alignSelf={'center'}
-              onClick={() => {
-                setUser(form.email);
-                navigate('/dashboard');
-              }}
+              onClick={
+                type === 'Login'
+                  ? () => {
+                      loginAction(form).then(data => {
+                        if (data.token) {
+                          setToken(data.token)
+                          setUser(form.email);
+                          navigate('/dashboard');
+                        } else {
+                          setmessage('Error');
+                        }
+                      });
+                    }
+                  : () => setmessage('This feature has not been added yet')
+              }
             >
               {type === 'Login' ? 'Login' : 'Sign up'}
             </Button>

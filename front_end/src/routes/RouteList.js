@@ -13,17 +13,49 @@ import Code from '../pages/Code';
 // import Help from '../pages/Help';
 
 const RoutesJs = () => {
-  // const [first, setfirst] = useState(true);
+  const [answ1, setAnswer1] = useState();
+  const [answ2, setAnswer2] = useState();
+  const [answ3, setAnswer3] = useState();
+  const [answ4, setAnswer4] = useState();
 
+  const callback1 = ode => {
+    setAnswer1(ode);
+  };
+  const callback2 = ode => {
+    setAnswer2(ode);
+  };
+  const callback3 = ode => {
+    setAnswer3(ode);
+  };
+  const callback4 = ode => {
+    setAnswer4(ode);
+  };
   return (
     <Routes>
       <Route exact path="/" element={<Home />}></Route>
       <Route exact path="/login" element={<Entry type={'Login'} />}></Route>
       <Route exact path="/signup" element={<Entry type={'Sign-up'} />}></Route>
-      <Route exact path="/dashboard" element={<Dashboard />}></Route>
+      <Route
+        exact
+        path="/dashboard"
+        element={
+          <Dashboard ans1={answ1} ans2={answ2} ans3={answ3} ans4={answ4} />
+        }
+      ></Route>
       <Route exact path="/dashboard/help" element={<Help />}></Route>
       <Route exact path="/dashboard/scan" element={<Scan />}></Route>
-      <Route exact path="/dashboard/scan/:id" element={<Code />}></Route>
+      <Route
+        exact
+        path="/dashboard/scan/:id"
+        element={
+          <Code
+            callback1={callback1}
+            callback2={callback2}
+            callback3={callback3}
+            callback4={callback4}
+          />
+        }
+      ></Route>
     </Routes>
   );
 };
