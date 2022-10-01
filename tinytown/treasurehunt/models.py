@@ -5,7 +5,7 @@ class Code(Model):
     class HintTypeChoices(IntegerChoices):
         POINTER = 1
         DIGIT = 2
-    Order = PositiveIntegerField(null=True)
+    Order = PositiveIntegerField(null=True,blank=True)
     Answer = PositiveIntegerField(null=True)
     Location = CharField(max_length=100, blank=True)
     Hint = CharField(max_length=250)
