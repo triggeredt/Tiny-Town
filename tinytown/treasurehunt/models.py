@@ -25,3 +25,5 @@ class CodeFind(Model):
     Answer = PositiveIntegerField(null=True)
     def __str__(self):
         return '%s: %s' % (str(self.User), str(self.Code))
+    def is_correct(self):
+        return self.Code.HintType == 2 and self.Answer == self.Code.AnswerDigit
