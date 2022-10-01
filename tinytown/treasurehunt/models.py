@@ -14,7 +14,10 @@ class Code(Model):
     Hint = CharField(max_length=250)
     HintType = SmallIntegerField(choices=HintTypeChoices.choices,default=1)
     def __str__(self):
-        return '%i. %s' % (self.Order, self.Hint)
+        if self.Order:
+            return '%i. %s' % (self.Order, self.Hint)
+        else:
+            return '?. ' + self.Hint
 
 class CodeFind(Model):
     User = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)

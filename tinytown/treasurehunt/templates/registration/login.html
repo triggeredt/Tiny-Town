@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>Login</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="/resources/styles.css" rel="stylesheet" type="text/css"/>
+<script src="/resources/loginpage.js" type="application/javascript"></script>
+</head>
+<body>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="checkbox" onchange="TogglePassword()" id="showpassword"/>
+        <label for="showpassword">Show password</label></p>
+        <input type="submit" class="btn btn-primary" value="Login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+</body>
+</html>
