@@ -42,5 +42,9 @@ class CodeFindViewSet(TopViewSet):
     serializer_class = CodeFindSerializer
     def get_queryset(self):
         return self.queryset.filter(User=self.request.user)
+    def check_lives(self):
+        object = self.get_object()
+        if object.Answer != object.Code.Answer:
+            object.User.lives -= 1
     def perform_create(self, serializer):
         serializer.save(User=self.request.user)
