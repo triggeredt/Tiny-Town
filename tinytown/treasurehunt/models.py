@@ -6,13 +6,13 @@ class Code(Model):
         POINTER = 1
         DIGIT = 2
     Order = PositiveIntegerField(null=True,blank=True)
-    AnswerDigit = PositiveIntegerField(null=True, blank=True)
-    AnswerLocation = CharField(max_length=100, blank=True)
-    LocationDescription = CharField(max_length=100, blank=True)
+    AnswerDigit = PositiveIntegerField(null=True, blank=True, verbose_name='Answer digit')
+    AnswerLocation = CharField(max_length=100, blank=True, verbose_name='Answer location')
+    LocationDescription = CharField(max_length=100, blank=True, verbose_name='Location description')
     Latitude = FloatField()
     Longitude = FloatField()
     Hint = CharField(max_length=250)
-    HintType = SmallIntegerField(choices=HintTypeChoices.choices,default=1)
+    HintType = SmallIntegerField(choices=HintTypeChoices.choices, default=1, verbose_name='Hint type')
     def __str__(self):
         if self.Order:
             return '%i. %s' % (self.Order, self.Hint)
