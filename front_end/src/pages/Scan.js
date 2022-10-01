@@ -25,6 +25,7 @@ function Scan() {
   useEffect(() => {
     if (data.startsWith('http')) {
       window.location.href = data;
+      return false;
     }
   }, [data]);
 
