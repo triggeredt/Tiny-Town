@@ -6,7 +6,8 @@ class Code(Model):
         POINTER = 1
         DIGIT = 2
     Order = PositiveIntegerField(null=True,blank=True)
-    Answer = PositiveIntegerField(null=True)
+    AnswerDigit = PositiveIntegerField(null=True)
+    AnswerLocation = CharField(max_length=100)
     Location = CharField(max_length=100, blank=True)
     Hint = CharField(max_length=250)
     HintType = SmallIntegerField(choices=HintTypeChoices.choices,default=1)
