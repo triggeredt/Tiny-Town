@@ -23,7 +23,7 @@ function Dashboard() {
   const user = getUser();
   if (!user) navigate('/login');
   const calculateTimeLeft = () => {
-    const difference = +new Date('October 1, 2022 21:00:00') - +new Date();
+    const difference = +new Date('October 1, 2022 20:00:00') - +new Date();
     let timeLeft = {};
     if (difference > 0) {
       timeLeft = {
