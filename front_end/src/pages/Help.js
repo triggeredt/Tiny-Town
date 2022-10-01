@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Heading,
   VStack,
   Text,
-  Flex,
   Box,
   useMediaQuery,
-  HStack,
-  Button,
   Stack,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from '../elements/ColorModeSwitcher';
-import { useNavigate, Switch, Route, Routes } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getUser } from '../utils/actions';
 
 import Navbar from '../elements/Navbar';

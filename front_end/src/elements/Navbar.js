@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Heading,
   VStack,
   Text,
   Flex,
@@ -9,10 +8,8 @@ import {
   useDisclosure,
   HStack,
   Button,
-  Stack,
   CloseButton,
   IconButton,
-  VisuallyHidden,
   chakra,
 } from '@chakra-ui/react';
 import { AiOutlineMenu } from 'react-icons/ai';

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   VStack,
@@ -128,7 +128,7 @@ const Entry = ({ type }) => {
                   ? () => {
                       loginAction(form).then(data => {
                         if (data.token) {
-                          setToken(data.token)
+                          setToken(data.token);
                           setUser(form.email);
                           navigate('/dashboard');
                         } else {

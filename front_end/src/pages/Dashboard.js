@@ -3,11 +3,9 @@ import {
   Heading,
   VStack,
   Text,
-  Flex,
   Box,
   useMediaQuery,
   HStack,
-  Button,
   Stack,
   Input,
 } from '@chakra-ui/react';
@@ -25,7 +23,7 @@ function Dashboard() {
   const user = getUser();
   if (!user) navigate('/login');
   const calculateTimeLeft = () => {
-    const difference = +new Date('October 1, 2022 16:38:00') - +new Date();
+    const difference = +new Date('October 1, 2022 21:00:00') - +new Date();
     let timeLeft = {};
     if (difference > 0) {
       timeLeft = {

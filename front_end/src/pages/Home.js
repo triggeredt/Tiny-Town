@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Heading,
   VStack,
@@ -6,7 +6,6 @@ import {
   Flex,
   Box,
   useMediaQuery,
-  HStack,
   Button,
   Stack,
 } from '@chakra-ui/react';

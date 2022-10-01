@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  VStack,
-  Grid,
-  theme,
-  Heading,
-} from '@chakra-ui/react';
+import { ChakraProvider, theme } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
 import RoutesJs from './routes/RouteList';
 function App() {
