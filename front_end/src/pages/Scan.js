@@ -22,6 +22,12 @@ function Scan() {
   const [data, setData] = useState('No result');
   const user = getUser();
   if (!user) navigate('/login');
+  useEffect(() => {
+    if (data.startsWith('http')) {
+      window.location.href = data;
+    }
+  }, [data]);
+
   return (
     <Box>
       <VStack h="100vh">
